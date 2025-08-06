@@ -1,48 +1,57 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 
-const long long INF = -1e18; // 도달 불가능한 상태를 나타내는 충분히 작은 값
+using namespace std;
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
 
     int N, S, T;
-    while (std::cin >> N && N != 0) {
-        std::cin >> S >> T;
-        std::vector<int> board(N + 1); // 1-based index
-        for (int i = 1; i <= N; ++i) {
-            std::cin >> board[i];
+    int dp[202][220]; // T<=N+1
+    /**
+     * dp[i][j] : i 번째 턴에 j번째 칸에 있을 때 최대 점수
+     * 마지막칸 N-1 에서 S 가 최대 20까지이므로 N+19 까지 접근가능함.
+     *
+     *
+     */
+    int arr[201];
+
+    while (1) {
+        cin >> N;
+        if (N == 0) break;
+        cin >> S >> T;
+
+        fill(&dp[0][0], &dp[201][220], -10000);
+        fill(&arr[0], &arr[201], 0);
+
+        for (int i = 1; i <= N; i++) {
+            cin >> arr[i];
         }
 
-        // dp[i][j]: i번의 턴으로 j번째 칸에 도착했을 때의 최대 리베이트
-        std::vector<std::vector<long long>> dp(T + 1, std::vector<long long>(N + S + 1, INF));
-        dp[0][0] = 0;
+        for (int i = 1; i <= S; i++) { // 초기값 설정
+            dp[1][i] = arr[i];
+        }
 
-        for (int t = 1; t <= T; ++t) {
-            for (int pos = 1; pos <= N + S; ++pos) {
-                for (int move = 1; move <= S; ++move) {
-                    int prev_pos = pos - move;
-                    if (prev_pos >= 0 && dp[t - 1][prev_pos] != INF) {
-                        long long rebate_on_this_square = 0;
-                        if (pos <= N) {
-                            rebate_on_this_square = board[pos];
-                        }
-                        dp[t][pos] = std::max(dp[t][pos], dp[t - 1][prev_pos] + rebate_on_this_square);
+        for (int i = 2; i <= T; i++) { // 총 T 턴동안 진행했을때
+            for (int j = 1; j <= N + S; j++) { // j 번째의 위치를 선택할때
+                for (int k = 1; k < j; k++) { // j 이전의 위치에서 이동한다.
+                    if (j - k <= S && dp[i - 1][k] != -10000) {
+                        dp[i][j] = max(dp[i][j], dp[i - 1][k] + arr[j]);
                     }
                 }
             }
         }
 
-        long long max_rebate = INF;
-        for (int t = 1; t <= T; ++t) {
-            for (int pos = N + 1; pos <= N + S; ++pos) {
-                max_rebate = std::max(max_rebate, dp[t][pos]);
-            }
+        int ans = -10000;
+        for (int i = N + 1; i <= N + S; i++) {
+            ans = max(ans, dp[T][i]);
         }
-        std::cout << max_rebate << "\n";
+
+        // for (int i = 1 ; i <= T ; i++) {
+        //     for (int j  = 1 ; j <= N+S ; j++) {
+        //         cout << dp[i][j] << ' ';
+        //     }
+        //     cout << '\n';
+        // }
+        cout << ans << '\n';
     }
 
-    return 0;
 }
