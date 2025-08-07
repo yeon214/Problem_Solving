@@ -1,11 +1,10 @@
 #include <iostream>
-
+#include <algorithm>
 using namespace std;
-
 int main() {
 
     int N, S, T;
-    int dp[202][220]; // T<=N+1
+    int dp[202][211]; // T<=N+1
     /**
      * dp[i][j] : i 번째 턴에 j번째 칸에 있을 때 최대 점수
      * 마지막칸 N-1 에서 S 가 최대 20까지이므로 N+19 까지 접근가능함.

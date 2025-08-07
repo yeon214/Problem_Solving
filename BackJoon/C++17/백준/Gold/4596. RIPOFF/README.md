@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 2068 KB, 시간: 0 ms
+메모리: 2064 KB, 시간: 0 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2025년 8월 6일 21:12:29
+2025년 8월 7일 23:00:35
 
 ### 문제 설명
 
@@ -28,13 +28,13 @@
 
 <p style="text-align:center">Figure 1</p>
 
-<p>The illustration shows two different possible ways the game might go.  Following the arrows on the top, if we spin a 2, 3, 4, 1, and 1 respectively, we will win a total rebate of 50 + 30 + 20 + 70 = <span>$</span>170.  However, the best possible rebate we could win would be <span>$</span>220.  We would win this amount if we spun a 1, 3, 2, 4, and 1 respectively, as shown by the lower path.  Notice that we did not land on every square with a positive number; if we had we wouldn’t have been able to make it to the end of the board before the 5 turns was up.</p>
+<p>The illustration shows two different possible ways the game might go.  Following the arrows on the top, if we spin a 2, 3, 4, 1, and 1 respectively, we will win a total rebate of 50 + 30 + 20 + 70 = \$170.  However, the best possible rebate we could win would be \$220.  We would win this amount if we spun a 1, 3, 2, 4, and 1 respectively, as shown by the lower path.  Notice that we did not land on every square with a positive number; if we had we wouldn’t have been able to make it to the end of the board before the 5 turns was up.</p>
 
 <p style="text-align:center"><img alt="" src="https://www.acmicpc.net/upload/images2/ripoff2.png" style="height:74px; width:543px"></p>
 
 <p style="text-align:center">Figure 2</p>
 
-<p>The illustration in Figure 2 shows a game where we have 4 turns to finish the game, and can move up to 3 spaces each turn.  Again, two different paths are shown, the one on top earning a rebate of -<span>$</span>150, and the one on bottom earning a rebate of -<span>$</span>100.  In fact, -<span>$</span>100 is the highest possible rebate we could earn for this game (a fact that would no doubt please the management of Gleamin’ Lemon).  Of course, there also might be a sequence of moves in which we do not reach the end before the turn limit—e.g. spinning a 1 every time.  Although not finishing would actually be preferable to finishing with a negative rebate, in this problem we are only going to consider sequences of moves which allow us to reach the end before the turn limit.</p>
+<p>The illustration in Figure 2 shows a game where we have 4 turns to finish the game, and can move up to 3 spaces each turn.  Again, two different paths are shown, the one on top earning a rebate of -\$150, and the one on bottom earning a rebate of -\$100.  In fact, -\$100 is the highest possible rebate we could earn for this game (a fact that would no doubt please the management of Gleamin’ Lemon).  Of course, there also might be a sequence of moves in which we do not reach the end before the turn limit—e.g. spinning a 1 every time.  Although not finishing would actually be preferable to finishing with a negative rebate, in this problem we are only going to consider sequences of moves which allow us to reach the end before the turn limit.</p>
 
 ### 입력 
 
