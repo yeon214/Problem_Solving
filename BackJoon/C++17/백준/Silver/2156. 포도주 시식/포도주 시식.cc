@@ -2,26 +2,18 @@
 #include <algorithm>
 using namespace std;
 int main(void) {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
 
-	int wine[10000], dp[10000] = { 0 }, n, result = 0;
-	cin >> n;
-	for (int i = 0; i < n; i++) cin >> wine[i];
-	if (n == 1) {
-		cout << wine[0];
-		return 0;
-	}
-	if (n == 2) {
-		cout << wine[0] + wine[1];
-		return 0;
-	}
-	dp[0] = wine[0];
-	dp[1] = wine[0] + wine[1];
-	dp[2] = max(max(dp[1], wine[0] + wine[2]), wine[1] + wine[2]);
-	for (int i = 3; i < n; i++) {
-		dp[i] = max(max(dp[i - 1], dp[i - 2] + wine[i]), dp[i - 3] + wine[i - 1] + wine[i]);
-	}
-	cout << dp[n - 1];
-	return 0;
+    int n, grape[10001], dp[10001]; //0은 안마심 1은 마심
+    cin >> n;
+    for (int i = 1; i <= n; i++) cin >> grape[i];
+    dp[1] = grape[1];
+    dp[2] = dp[1] + grape[2];
+    dp[3] = max(max(grape[1] + grape[3], grape[2] + grape[3]), dp[2]);
+    for (int i = 4; i <= n; i++) {
+        dp[i] = max(max(dp[i-2] + grape[i], dp[i-3] + grape[i - 1] + grape[i]), dp[i - 1]);
+    }
+    cout << dp[n];
+    return 0;
 }
