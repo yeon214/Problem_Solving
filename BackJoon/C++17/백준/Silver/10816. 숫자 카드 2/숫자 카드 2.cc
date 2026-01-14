@@ -1,28 +1,22 @@
 #include <iostream>
-#include <map>
 #include <algorithm>
+#include <map>
 using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
+    int n, m, value;
+    map<int, int> list;
     cin >> n;
-
-    map<int, int> cnt;
     for (int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        cin >> value;
+        list[value]++;
     }
-
-    int m;
     cin >> m;
     for (int i = 0; i < m; i++) {
-        int x;
-        cin >> x;
-        cout << cnt[x];
-        if (i != m - 1) cout << ' ';
+        cin >> value;
+        cout << list[value] << " ";
     }
 
     return 0;
