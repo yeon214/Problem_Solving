@@ -1,39 +1,36 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <string>
+#include <algorithm>
 #include <stack>
+#include <string>
 using namespace std;
 int main(void) {
-	string sentence;
-	while (getline(cin, sentence)) {
-		if (sentence[0] == '.') break;
-		stack <char> list;
-		bool jud = true;
-		for (int i = 0; i < sentence.length(); i++) {
-			if (sentence[i] == '[' || sentence[i] == '(') list.push(sentence[i]);
-			else if (sentence[i] == ']' || sentence[i] == ')') {
-				if (list.empty()) {
-					jud = false;
-					break;
-				}
-				if (sentence[i] == ']') {
-					if (list.top() == '[') list.pop();
-					else {
-						jud = false;
-						break;
-					}
-				}
-				else {
-					if (list.top() == '(') list.pop();
-					else {
-						jud = false;
-						break;
-					}
-				}
-			}
-		}
-		if (jud == true && list.empty()) printf("yes\n");
-		else printf("no\n");
-	}
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    string sentence;
+    while (getline(cin, sentence)) {
+        stack <char> list;
+        if (sentence == ".") break;
+        for (int i = 0; i < sentence.size(); i++) {
+            if (sentence[i] == '(' || sentence[i] == '[') list.push(sentence[i]);
+            else if (sentence[i] == ')' || sentence[i] == ']'){
+                if (list.empty() == true) {
+                    list.push(sentence[i]);
+                    break;
+                }
+                if (sentence[i] == ')') {
+                    if (list.top() == '(') list.pop();
+                    else break;
+                }
+                else {
+                    if (list.top() == '[') list.pop();
+                    else break;
+                }
+            }
+        }
+        if (list.empty() == true) cout << "yes\n";
+        else cout << "no\n";
+    }
+
+    return 0;
 }
