@@ -1,20 +1,24 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#include <iostream>
+#include <algorithm>
 #include <stack>
 using namespace std;
 int main(void) {
-	int k, num, sum = 0;
-	stack <int> list;
-	scanf("%d", &k);
-	while (k--) {
-		scanf("%d", &num);
-		if (num) list.push(num);
-		else list.pop();
-	}
-	while (list.empty() == false) {
-		sum += list.top();
-		list.pop();
-	}
-	printf("%d", sum);
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int k, input, result = 0;
+    stack <int> list;
+    cin >> k;
+    while (k--) {
+        cin >> input;
+        if (input == 0) list.pop();
+        else list.push(input);
+    }
+    while (list.empty() == false) {
+        result += list.top();
+        list.pop();
+    }
+    cout << result;
+
+    return 0;
 }
