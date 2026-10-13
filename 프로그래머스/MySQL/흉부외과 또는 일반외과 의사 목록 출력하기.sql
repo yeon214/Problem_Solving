@@ -1,0 +1,4 @@
+SELECT DR_NAME, DR_ID, MCDP_CD, HIRE_YMD
+from doctor
+where MCDP_CD like 'CS' or MCDP_CD like 'GS'
+order by HIRE_YMD desc, DR_NAME;
